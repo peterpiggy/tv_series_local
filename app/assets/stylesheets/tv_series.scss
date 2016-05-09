@@ -1,0 +1,26 @@
+// Place all the styles related to the TvSeries controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.table td, .table th {
+	text-align: center;
+}
+
+.field-tip {
+	margin-top: -10px;
+	line-height: 1;
+	font-size: 0.8em;
+}
+
+div.form-group.date_picker.optional.tv_series_next_episode_date > div > span > button {
+	height: 34px;
+	width: 100px;
+}
+
+.time-to-watch {
+	background-color: #dfc;
+}
+
+.time-to-watch-on-tv {
+	background-color: #cff;
+}

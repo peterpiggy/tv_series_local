@@ -1,0 +1,18 @@
+<%= simple_form_for(@tv_series) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<%= f.input :name, placeholder: 'Название сериала' %>
+  	<%= f.input :season %>
+  	<%= f.input :episode %>
+  	<%= f.input :next_episode_date, :as => :date_picker, placeholder: 'Выбери дату, нажав на кнопку справа' %>
+    <p class="field-tip"><%= 'Если дата совсем неизвестна, оставь поле пустым' %></p>
+    <p class="field-tip"><%= 'Если точная дата неизвестна, но ты точно знаешь месяц, укажи первый день месяца, например 01.05.2016' %></p>
+    <p class="field-tip"><%= 'Если точная дата неизвестна, но ты точно знаешь время года, укажи первый день времени года, например 01.09.2016' %></p>
+    <p class="field-tip"><%= 'Если точная дата неизвестна, но ты точно знаешь год, укажи первый день года, например 01.01.2016' %></p>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, value: 'Сохранить' %>
+  </div>
+<% end %>
