@@ -28,17 +28,17 @@
           <td><%= link_to tv_series.name, tv_series %></td>
           <td><%= tv_series.season %></td>
           <td><%= tv_series.episode %></td>
-          <% if (tv_series.next_episode_date) %>
-            <td><%= tv_series.next_episode_date.strftime('%d.%m.%Y') %><br><%= link_to 'Дата неверна?', edit_tv_series_path(tv_series) %></td>
-          <% else %>
-            <td>Неизвестно.<br><%= link_to 'Указать дату', edit_tv_series_path(tv_series) %></td>
-          <% end %>
           <% @name = tv_series.name.gsub(' ', '%20') %>
+          <% if (tv_series.next_episode_date) %>
+            <td><%= link_to tv_series.next_episode_date.strftime('%d.%m.%Y'), 'https://en.wikipedia.org/wiki/' + @name, target: '_blank' %><br><%= link_to 'Дата неверна?', edit_tv_series_path(tv_series) %></td>
+          <% else %>
+            <td><%= link_to 'Неизвестно', 'https://en.wikipedia.org/wiki/' + @name, target: '_blank' %>.<br><%= link_to 'Указать дату', edit_tv_series_path(tv_series) %></td>
+          <% end %>
           <% @season = tv_series.season < 10 ? '0' + tv_series.season.to_s : tv_series.season.to_s %>
           <% @episode = tv_series.episode < 10 ? '0' + tv_series.episode.to_s : tv_series.episode.to_s %>
           <% if(tv_series.next_episode_date && tv_series.next_episode_date < Time.now) %>
-            <td><%= link_to 'Найти субтитры', 'http://www.opensubtitles.org/en/search2/sublanguageid-eng/moviename-' + @name + '+s' + @season + 'e' + @episode, target: '_blank' %></td>
-            <td><%= link_to 'Найти torrent', 'https://kat.cr/usearch/' + @name + '%20s' + @season + 'e' + @episode + '%20720p/', target: '_blank' %></td>
+            <td><%= link_to 'Субтитры', 'http://www.opensubtitles.org/en/search2/sublanguageid-eng/moviename-' + @name + '+s' + @season + 'e' + @episode, target: '_blank' %></td>
+            <td><%= link_to 'Torrent', 'https://kat.cr/usearch/' + @name + '%20s' + @season + 'e' + @episode + '%20720p/', target: '_blank' %></td>
             <td><%= link_to 'Я посмотрел серию', tv_series_path(tv_series, tv_series: {episode: tv_series.episode + 1, next_episode_date: tv_series.next_episode_date + 1.week}), method: :patch, data: {confirm: 'Точно посмотрел?'} %><br>
             <%= link_to 'Я посмотрел сезон', tv_series_path(tv_series, tv_series: {season: tv_series.season + 1, episode: 1, next_episode_date: nil}), method: :patch, data: {confirm: 'Целый сезон?'} %></td>
           <% else %>
